@@ -1,0 +1,87 @@
+import java.util.*;
+
+public class OxygenFitnessTest
+{
+    
+    public static void main(String[] args)
+
+
+
+    {
+        Scanner scanner = new Scanner(System.in);
+        
+        
+        
+        int[][] oxygenLevels = new int[3][3];
+
+
+        
+        double[] averageOxygen = new double[3];
+
+        
+        boolean isInputValid = true;
+
+
+
+
+        for (int trainee = 0; trainee < 3; trainee++) 
+        {
+            for (int test = 0; test < 3; test++)
+            {
+                int level = scanner.nextInt();
+                
+                if (level < 1 || level > 100) 
+                {
+                    isInputValid = false;
+                }
+                
+                oxygenLevels[trainee][test] = level;
+            }
+
+
+        }
+
+
+        if (!isInputValid)
+        {
+            
+            System.out.println("INVALID INPUT");
+            
+            return;
+        }
+
+        
+        for (int trainee = 0; trainee < 3; trainee++)
+        {
+            averageOxygen[trainee] = Math.round((oxygenLevels[trainee][0] + oxygenLevels[trainee][1] + oxygenLevels[trainee][2]) / 3.0);
+        }
+
+       
+        double highestAvg = Arrays.stream(averageOxygen).max().getAsDouble();
+
+     
+        if (highestAvg < 70)
+
+        {
+            System.out.println("All trainees are unfit");
+        } 
+
+
+        else
+
+
+        {
+            for (int trainee = 0; trainee < 3; trainee++)
+            
+            {
+                if (averageOxygen[trainee] == highestAvg) 
+                
+                {
+                    System.out.println("Trainee Number : " + (trainee + 1));
+                }
+
+            }
+        }
+
+    }
+}
